@@ -36,7 +36,11 @@ namespace Realyx
 		}
 
 		public bool hasEnded(){
-			return true;
+			return source.hasEnded();
+		}
+
+		public bool isActive(){
+			return source.isActive ();
 		}
 
 		private void readThread(){

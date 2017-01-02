@@ -10,6 +10,7 @@ namespace Realyx
 		StereoAudioFrame saf;
 
 		List<Channel> channels;
+		List<StereoEffect> effects;
 
 		Stopwatch st = new Stopwatch();
 
@@ -17,6 +18,11 @@ namespace Realyx
 		{
 			this.saf = new StereoAudioFrame ();
 			channels = new List<Channel> ();
+			this.effects = new List<StereoEffect> ();
+		}
+
+		public void addEffect(StereoEffect effect){
+			this.effects.Add (effect);
 		}
 
 		public int addChannel(StereoBlock source){
@@ -55,6 +61,10 @@ namespace Realyx
 				}
 			}
 
+			foreach (var effect in effects) {
+				effect.process (ref saf);
+			}
+
 			//Set Metadata to at least *something*
 			saf.length = (double)StereoAudioFrame.MAXLEN / 48000;
 			saf.start += saf.length;
@@ -69,12 +79,17 @@ namespace Realyx
 		}
 
 		public bool hasEnded(){
+			return false;
 			for (int i = 0; i < channels.Count; i++) {
 				if (channels [i].hasEnded()) {
 					return true;
 				}
 			}
 			return false;
+		}
+
+		public bool isActive(){
+			return true;
 		}
 			
 

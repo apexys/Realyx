@@ -14,7 +14,17 @@ namespace Realyx
 			//var source = new RIFFWaveSource (fstr, () => fstr.Position == fstr.Length);
 			var ch1 = mixer.addChannel (source);
 			var ch2 = mixer.addChannel (source2);
-			mixer.setVolume (ch1, 0.3f);
+			mixer.setVolume (ch1, 0.5f);
+
+			var effect = new AverageVolumeAnalyzer (1);
+			effect.addListener ((l, r) => {
+				Console.WriteLine("Left: " + l.ToString() + ", Right: " + r.ToString());
+			});
+
+			mixer.addEffect (effect);
+			source.Play ();
+			source2.Play ();
+
 			var sink = new FFPlaySink ();
 			sink.configure (mixer);
 			sink.Play ();

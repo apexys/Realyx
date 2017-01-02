@@ -5,14 +5,20 @@ using System.Threading.Tasks;
 
 namespace Realyx
 {
-	public class FFMpegSource : StereoBlock
+	public class FFMpegSource : StereoBlock, ControllableSource
 	{
 		Process ffmpeg_process;
 		FileStream fstr;
 		PCMSource pcms;
+		bool stopped;
+		bool paused;
 
 		public FFMpegSource (String filename)
 		{
+			//Set options
+			paused = true;
+			stopped = false;
+
 			//Make sure file exists and is mp3
 			if (!File.Exists (filename)) {
 				throw new ArgumentException ("File does not exist: " + filename);
@@ -75,9 +81,33 @@ namespace Realyx
 			return ffmpeg_process.StandardOutput.EndOfStream;
 		}
 
+
+
+
 		public Boolean hasExited(){
-			return ffmpeg_process.HasExited;
+			return ffmpeg_process.HasExited || stopped;
 		}
+
+		public bool isActive(){
+			if (hasExited()) {
+				return false;
+			} else {
+				return !paused;
+			}
+		}
+
+		public void Play(){
+			paused = false;
+		}
+
+		public void Pause (){
+			paused = true;
+		}
+
+		public void Stop(){
+			stopped = true;
+		}
+			
 	}
 }
 

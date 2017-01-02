@@ -7,6 +7,8 @@ namespace Realyx
 		StereoAudioFrame get();
 
 		bool hasEnded();
+
+		bool isActive();
 	}
 }
 

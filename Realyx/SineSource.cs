@@ -17,6 +17,10 @@ namespace Realyx
 			return false;
 		}
 
+		public bool isActive(){
+			return true;
+		}
+
 
 		public StereoAudioFrame get ()
 		{

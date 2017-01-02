@@ -27,6 +27,10 @@ namespace Realyx
 			return EndOfStream();
 		}
 
+		public bool isActive(){
+			return hasEnded();
+		}
+
 		BinaryReader br;
 		public StereoAudioFrame get(){
 			for (int i = 0; i < StereoAudioFrame.MAXLEN; i++) {
