@@ -45,6 +45,7 @@ namespace Realyx
 
 		private void serializeData (int startPos){
 			StereoAudioFrame saf = source.get ();
+			Console.WriteLine ("Read frame " + saf.number);
 			byte[] bits = new byte[4];
 			for (int i = 0; i < StereoAudioFrame.MAXLEN; i++) {
 				bits = BitConverter.GetBytes (saf.left_data[i]);
@@ -55,13 +56,13 @@ namespace Realyx
 		}
 
 		public void Run(){
-			sem_write.Wait ();
-			serializeData(0);
-			writePos++;
-			Task.Run (() => {
+			sem_write.Wait (); //Wait until we have space to write
+			serializeData(0); //Start serializing floats into bytes at position 0 in the buffer
+			writePos++;//We have read enough data for ONE read
+			Task.Run (() => {//Now fork and read more data
 				while(true){
 					sem_write.Wait();//Wait until we have enough space to write
-					while(writePos != readPos && !source.hasEnded()){
+					while(writePos != readPos && !source.hasEnded()){//We can write until we hit the read position
 						serializeData(writePos * blockLength);
 						writePos++;
 						if(writePos == cycles){

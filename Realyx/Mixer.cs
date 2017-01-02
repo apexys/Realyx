@@ -24,6 +24,10 @@ namespace Realyx
 			return channels.Count - 1;
 		}
 
+		public void setVolume(int ChannelNumber, float volume){
+			channels [ChannelNumber].volume = volume;
+		}
+
 		public StereoAudioFrame get(){
 			st.Start ();
 			//1. Zero out saf

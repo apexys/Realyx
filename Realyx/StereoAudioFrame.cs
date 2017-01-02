@@ -9,6 +9,7 @@ namespace Realyx
 		public float[] right_data;
 		public double start;
 		public double length;
+		public int number;
 
 
 		public StereoAudioFrame ()

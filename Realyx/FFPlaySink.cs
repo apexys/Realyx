@@ -17,8 +17,9 @@ namespace Realyx
 		{
 			ProcessStartInfo psi = new ProcessStartInfo ();
 			psi.FileName = "ffplay";
-			psi.Arguments = "-i - -f f32le -ar 48000 -ac 2 -acodec pcm_f32le -nodisp -infbuf";
+			psi.Arguments = "-i - -f f32le -ar 48000 -ac 2 -acodec pcm_f32le -nodisp "; //-infbuf
 			psi.RedirectStandardInput = true;
+			psi.RedirectStandardError = true;
 			psi.UseShellExecute = false;
 			ffplay_process = new Process ();
 			ffplay_process.StartInfo = psi;
@@ -33,15 +34,19 @@ namespace Realyx
 			byte[] bits = new byte[4];
 			int written = 0;
 
-			RawByteBuffer rbb = new RawByteBuffer (this.source, 4);
+			//RawByteBuffer rbb = new RawByteBuffer (this.source, 2);
 
-			rbb.Run (); //Let it buffer!
+			//rbb.Run (); //Let it buffer!
+
+			RawByteDoubleBuffer rbdb = new RawByteDoubleBuffer ();
+			rbdb.configure (this.source);
+			rbdb.Play ();
 
 			while (!source.hasEnded()) {
 				
 				//st.Start ();
 
-				byte[] outbuffer = rbb.get();
+				byte[] outbuffer = rbdb.getBytes();
 
 				//st.Stop ();
 				//Console.WriteLine ("Time spent in sink: " + st.ElapsedMilliseconds + "ms");

@@ -53,6 +53,7 @@
     <Compile Include="SineSource.cs" />
     <Compile Include="FFMpegRIFFWaveSource.cs" />
     <Compile Include="RIFFWaveSource.cs" />
+    <Compile Include="RawByteDoubleBuffer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

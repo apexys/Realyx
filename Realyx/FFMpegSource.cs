@@ -36,7 +36,7 @@ namespace Realyx
 			ffmpeg_process = new Process ();
 			ffmpeg_process.StartInfo = psi;
 			ffmpeg_process.ErrorDataReceived += (object sender, DataReceivedEventArgs e) => {
-				Console.WriteLine("Error: " + e.Data);
+				//Console.WriteLine("Error: " + e.Data); //TODO: Debug
 			};
 			//ffmpeg_process.OutputDataReceived += (object sender, DataReceivedEventArgs e) => {
 			//Console.WriteLine("Data: " + e.Data);
