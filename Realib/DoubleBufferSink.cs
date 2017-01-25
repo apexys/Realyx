@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Realyx
+namespace Realib
 {
 	//As far as I can see this is mostly useless
 	public class DoubleBufferSink : StereoSink, StereoBlock

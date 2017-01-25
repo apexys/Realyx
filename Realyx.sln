@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Realyx", "Realyx\Realyx.csproj", "{3C07F5BF-B05E-4BDE-A6AF-76276D4FAE9E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Realib", "Realib\Realib.csproj", "{8527E0D6-4FCF-4542-B159-ED0BCF510925}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,5 +15,9 @@ Global
 		{3C07F5BF-B05E-4BDE-A6AF-76276D4FAE9E}.Debug|x86.Build.0 = Debug|x86
 		{3C07F5BF-B05E-4BDE-A6AF-76276D4FAE9E}.Release|x86.ActiveCfg = Release|x86
 		{3C07F5BF-B05E-4BDE-A6AF-76276D4FAE9E}.Release|x86.Build.0 = Release|x86
+		{8527E0D6-4FCF-4542-B159-ED0BCF510925}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8527E0D6-4FCF-4542-B159-ED0BCF510925}.Debug|x86.Build.0 = Debug|Any CPU
+		{8527E0D6-4FCF-4542-B159-ED0BCF510925}.Release|x86.ActiveCfg = Release|Any CPU
+		{8527E0D6-4FCF-4542-B159-ED0BCF510925}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

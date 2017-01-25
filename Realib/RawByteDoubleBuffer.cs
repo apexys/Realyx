@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Realyx
+namespace Realib
 {
 	public class RawByteDoubleBuffer : StereoSink
 	{

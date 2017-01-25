@@ -2,7 +2,7 @@
 
 using System.IO;
 
-namespace Realyx
+namespace Realib
 {
 	public class PCMSource : StereoBlock
 	{

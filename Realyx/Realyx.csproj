@@ -35,21 +35,12 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AplaySink.cs" />
-    <Compile Include="PCMSource.cs" />
-    <Compile Include="StereoAudioFrame.cs" />
-    <Compile Include="StereoBlock.cs" />
-    <Compile Include="StereoEffect.cs" />
-    <Compile Include="FFMpegSource.cs" />
-    <Compile Include="Mixer.cs" />
-    <Compile Include="FFPlaySink.cs" />
-    <Compile Include="DoubleBufferSink.cs" />
-    <Compile Include="StereoSink.cs" />
-    <Compile Include="SineSource.cs" />
-    <Compile Include="RawByteDoubleBuffer.cs" />
-    <Compile Include="ControllableSource.cs" />
-    <Compile Include="AverageVolumeAnalyzer.cs" />
-    <Compile Include="AudioMetaData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\Realib\Realib.csproj">
+      <Project>{8527E0D6-4FCF-4542-B159-ED0BCF510925}</Project>
+      <Name>Realib</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

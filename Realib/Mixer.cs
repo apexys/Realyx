@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Realyx
+namespace Realib
 {
 	public class Mixer : StereoBlock
 	{

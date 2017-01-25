@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Realyx
+namespace Realib
 {
 	public class SineSource : StereoBlock
 	{

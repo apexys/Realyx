@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace Realyx
+namespace Realib
 {
 	public class FFPlaySink : StereoSink
 	{
