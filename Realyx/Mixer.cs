@@ -52,12 +52,14 @@ namespace Realyx
 			//3. Load new data
 			StereoAudioFrame channel_frame;
 			foreach(Channel channel in channels){
-				if (!channel.hasEnded()) {
-					channel_frame = channel.get();
+				if (!channel.hasEnded ()) {
+					channel_frame = channel.get ();
 					for (var i = 0; i < StereoAudioFrame.MAXLEN; i++) {
 						saf.left_data [i] += channel_frame.left_data [i] * channel_factor * channel.volume;
 						saf.right_data [i] += channel_frame.right_data [i] * channel_factor * channel.volume;
 					}
+				} else {
+					Console.WriteLine ("Channel has ended ");
 				}
 			}
 

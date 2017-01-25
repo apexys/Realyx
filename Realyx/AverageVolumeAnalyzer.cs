@@ -31,16 +31,18 @@ namespace Realyx
 				rightvol = Math.Abs(data.right_data [0]);
 				counter++;
 				samplesNeeded--;
+				started = true;
 			}
 			for (var i = counter; counter < StereoAudioFrame.MAXLEN; counter++) {
-				leftvol += Math.Abs(data.left_data [counter] / (float)sampleLength);
-				rightvol += Math.Abs(data.right_data [counter] / (float) sampleLength);
+				leftvol += (Math.Abs(data.left_data [counter]) -leftvol) / (float)sampleLength;
+				rightvol += (Math.Abs(data.right_data [counter]) -rightvol) / (float) sampleLength;
 				counter++;
 				samplesNeeded--;
 				if (samplesNeeded == 0) {
 					foreach (Action<float,float> listener in listeners) {
 						listener (leftvol, rightvol);
 					}
+					samplesNeeded = sampleLength;
 				}
 			}
 		}

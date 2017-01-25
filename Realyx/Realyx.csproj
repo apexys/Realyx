@@ -49,6 +49,7 @@
     <Compile Include="RawByteDoubleBuffer.cs" />
     <Compile Include="ControllableSource.cs" />
     <Compile Include="AverageVolumeAnalyzer.cs" />
+    <Compile Include="AudioMetaData.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

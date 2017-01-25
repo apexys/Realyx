@@ -12,6 +12,9 @@ namespace Realyx
 		byte[] buffer;
 		int overlap;
 		int number = 0;
+
+		public double position;
+
 		const int fullBufferLen = StereoAudioFrame.MAXLEN * 4 * 2;//Maximum buffer length * 4 Bytes in a float * 2 Channels
 		public PCMSource (Stream sourceStream, Func<bool> EndOfStream)
 		{
@@ -42,6 +45,9 @@ namespace Realyx
 			}
 			saf.number = number;
 			number++;
+			this.position = saf.start;
+			saf.start += saf.length;
+			saf.length = (double)StereoAudioFrame.MAXLEN / (double)48000;
 			return saf;
 		}
 
