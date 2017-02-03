@@ -5,19 +5,37 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Realyx", "Realyx\Realyx.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Realib", "Realib\Realib.csproj", "{8527E0D6-4FCF-4542-B159-ED0BCF510925}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Metadata", "Metadata\Metadata.csproj", "{CA5D5CE2-8A50-498B-A104-ACDA4D764C57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pulseaudio-Bindings", "Pulseaudio-Bindings\Pulseaudio-Bindings.csproj", "{11627BAF-C182-4EB9-8908-EBF0C1DBA10F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reamix", "Reamix\Reamix.csproj", "{4D7634A9-CC58-4743-9617-9126FADA7C73}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11627BAF-C182-4EB9-8908-EBF0C1DBA10F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{11627BAF-C182-4EB9-8908-EBF0C1DBA10F}.Debug|x86.Build.0 = Debug|Any CPU
+		{11627BAF-C182-4EB9-8908-EBF0C1DBA10F}.Release|x86.ActiveCfg = Release|Any CPU
+		{11627BAF-C182-4EB9-8908-EBF0C1DBA10F}.Release|x86.Build.0 = Release|Any CPU
 		{3C07F5BF-B05E-4BDE-A6AF-76276D4FAE9E}.Debug|x86.ActiveCfg = Debug|x86
 		{3C07F5BF-B05E-4BDE-A6AF-76276D4FAE9E}.Debug|x86.Build.0 = Debug|x86
 		{3C07F5BF-B05E-4BDE-A6AF-76276D4FAE9E}.Release|x86.ActiveCfg = Release|x86
 		{3C07F5BF-B05E-4BDE-A6AF-76276D4FAE9E}.Release|x86.Build.0 = Release|x86
+		{4D7634A9-CC58-4743-9617-9126FADA7C73}.Debug|x86.ActiveCfg = Debug|x86
+		{4D7634A9-CC58-4743-9617-9126FADA7C73}.Debug|x86.Build.0 = Debug|x86
+		{4D7634A9-CC58-4743-9617-9126FADA7C73}.Release|x86.ActiveCfg = Release|x86
+		{4D7634A9-CC58-4743-9617-9126FADA7C73}.Release|x86.Build.0 = Release|x86
 		{8527E0D6-4FCF-4542-B159-ED0BCF510925}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{8527E0D6-4FCF-4542-B159-ED0BCF510925}.Debug|x86.Build.0 = Debug|Any CPU
 		{8527E0D6-4FCF-4542-B159-ED0BCF510925}.Release|x86.ActiveCfg = Release|Any CPU
 		{8527E0D6-4FCF-4542-B159-ED0BCF510925}.Release|x86.Build.0 = Release|Any CPU
+		{CA5D5CE2-8A50-498B-A104-ACDA4D764C57}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CA5D5CE2-8A50-498B-A104-ACDA4D764C57}.Debug|x86.Build.0 = Debug|Any CPU
+		{CA5D5CE2-8A50-498B-A104-ACDA4D764C57}.Release|x86.ActiveCfg = Release|Any CPU
+		{CA5D5CE2-8A50-498B-A104-ACDA4D764C57}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

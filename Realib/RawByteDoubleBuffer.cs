@@ -50,7 +50,7 @@ namespace Realib
 			activeInput = 2;
 			sem_read.Release ();
 			Task.Run (() => {
-				while(!source.hasEnded()){
+				while(true /*!source.hasEnded()*/){
 					sem_write.Wait();
 					serialize(activeInput);
 					sem_read.Release();

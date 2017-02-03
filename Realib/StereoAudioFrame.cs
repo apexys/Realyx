@@ -19,6 +19,8 @@ namespace Realib
 			start = 0;
 			length = 0;
 		}
+
+		public static StereoAudioFrame Zero = new StereoAudioFrame();
 	}
 }
 

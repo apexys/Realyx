@@ -11,8 +11,6 @@ namespace Realib
 
 		StereoBlock source;
 
-		Stopwatch st = new Stopwatch();
-
 		public FFPlaySink ()
 		{
 			ProcessStartInfo psi = new ProcessStartInfo ();
@@ -31,8 +29,6 @@ namespace Realib
 		}
 
 		public void Play(){
-			byte[] bits = new byte[4];
-			int written = 0;
 
 			//RawByteBuffer rbb = new RawByteBuffer (this.source, 2);
 
@@ -42,7 +38,7 @@ namespace Realib
 			rbdb.configure (this.source);
 			rbdb.Play ();
 
-			while (!source.hasEnded()) {
+			while (true) {
 				
 				//st.Start ();
 

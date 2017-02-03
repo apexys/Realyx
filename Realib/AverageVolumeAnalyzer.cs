@@ -11,16 +11,16 @@ namespace Realib
 		int samplesNeeded;
 		int sampleLength;
 		bool started = false;
-		List<Action<float,float>> listeners;
+		List<Action<float,float, float>> listeners;
 		public AverageVolumeAnalyzer (float time)
 		{
 			this.time = time;
 			this.sampleLength =Convert.ToInt32( 48000f * time);
 			this.samplesNeeded = sampleLength;
-			listeners = new List<Action<float, float>> ();
+			listeners = new List<Action<float, float, float>> ();
 		}
 
-		public void addListener(Action<float,float> listener){
+		public void addListener(Action<float,float, float> listener){
 			listeners.Add (listener);
 		}
 
@@ -33,14 +33,14 @@ namespace Realib
 				samplesNeeded--;
 				started = true;
 			}
-			for (var i = counter; counter < StereoAudioFrame.MAXLEN; counter++) {
+			for (; counter < StereoAudioFrame.MAXLEN; counter++) {
 				leftvol += (Math.Abs(data.left_data [counter]) -leftvol) / (float)sampleLength;
 				rightvol += (Math.Abs(data.right_data [counter]) -rightvol) / (float) sampleLength;
 				counter++;
 				samplesNeeded--;
 				if (samplesNeeded == 0) {
-					foreach (Action<float,float> listener in listeners) {
-						listener (leftvol, rightvol);
+					foreach (Action<float,float, float> listener in listeners) {
+						listener (leftvol, rightvol,Convert.ToSingle(data.start + data.length));
 					}
 					samplesNeeded = sampleLength;
 				}

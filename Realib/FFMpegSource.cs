@@ -78,7 +78,7 @@ namespace Realib
 		}
 
 		public bool hasEnded(){
-			return ffmpeg_process.StandardOutput.EndOfStream;
+			return pcms.hasEnded ();
 		}
 
 

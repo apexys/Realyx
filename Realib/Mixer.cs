@@ -5,12 +5,12 @@ using System.Diagnostics;
 
 namespace Realib
 {
-	public class Mixer : StereoBlock
+	public class Mixer : ClockedStructure
 	{
 		StereoAudioFrame saf;
 
 		List<Channel> channels;
-		List<StereoEffect> effects;
+		List<StereoBlock> sinks;
 
 		Stopwatch st = new Stopwatch();
 
@@ -18,54 +18,62 @@ namespace Realib
 		{
 			this.saf = new StereoAudioFrame ();
 			channels = new List<Channel> ();
-			this.effects = new List<StereoEffect> ();
+			this.sinks = new List<StereoBlock> ();
 		}
-
-		public void addEffect(StereoEffect effect){
-			this.effects.Add (effect);
-		}
-
-		public int addChannel(StereoBlock source){
+			
+		public int addChannel(Channel source){
 			channels.Add (new Channel(source));
 			return channels.Count - 1;
 		}
 
-		public void setVolume(int ChannelNumber, float volume){
-			channels [ChannelNumber].volume = volume;
+		public MixerSink createSink(){
+			var sink = new MixerSink ();
+			sinks.Add (sink);
+			return sink;
 		}
 
-		public StereoAudioFrame get(){
+		public class MixerSink : StereoBlock{
+			StereoAudioFrame saf = new StereoAudioFrame();
+			public StereoAudioFrame get(){
+				return saf;
+			}
+
+			public void update(StereoAudioFrame newsaf){
+				Array.Copy (newsaf.left_data, this.saf.left_data, StereoAudioFrame.MAXLEN);
+				Array.Copy (newsaf.right_data, this.saf.right_data, StereoAudioFrame.MAXLEN);
+				this.saf.number = newsaf.number;
+				this.saf.start = newsaf.start;
+				this.saf.length = newsaf.length;
+			}
+
+			public bool hasEnded(){
+				return false;
+			}
+
+			public bool isActive(){
+				return false;
+			}
+		}
+
+		public void tick(){
 			st.Start ();
 			//1. Zero out saf
 			Array.Clear(saf.left_data,0,StereoAudioFrame.MAXLEN);
 			Array.Clear(saf.right_data,0,StereoAudioFrame.MAXLEN);
 
 			//2. Calculate channel factor
-			float channel_factor = 0;
-			foreach(Channel channel in channels){
-				if (!channel.hasEnded()) {
-					channel_factor++;
-				}
-			}
-			channel_factor = 1 / channel_factor;
+			float channel_factor = 1 / (float) channels.Count;
 
 			//3. Load new data
 			StereoAudioFrame channel_frame;
 			foreach(Channel channel in channels){
-				if (!channel.hasEnded ()) {
-					channel_frame = channel.get ();
-					for (var i = 0; i < StereoAudioFrame.MAXLEN; i++) {
-						saf.left_data [i] += channel_frame.left_data [i] * channel_factor * channel.volume;
-						saf.right_data [i] += channel_frame.right_data [i] * channel_factor * channel.volume;
-					}
-				} else {
-					Console.WriteLine ("Channel has ended ");
+				channel_frame = channel.get ();
+				for (var i = 0; i < StereoAudioFrame.MAXLEN; i++) {
+					saf.left_data [i] += channel_frame.left_data [i] * channel_factor;
+					saf.right_data [i] += channel_frame.right_data [i] * channel_factor;
 				}
 			}
-
-			foreach (var effect in effects) {
-				effect.process (ref saf);
-			}
+				
 
 			//Set Metadata to at least *something*
 			saf.length = (double)StereoAudioFrame.MAXLEN / 48000;
@@ -75,54 +83,11 @@ namespace Realib
 			Console.WriteLine ("Time spent in mixer: " + st.ElapsedMilliseconds + "ms");
 			st.Reset ();
 
-			//4. Return data
-			return saf;
-
-		}
-
-		public bool hasEnded(){
-			return false;
-			for (int i = 0; i < channels.Count; i++) {
-				if (channels [i].hasEnded()) {
-					return true;
-				}
-			}
-			return false;
-		}
-
-		public bool isActive(){
-			return true;
-		}
-			
-
-
-		class Channel{
-			public StereoBlock source;
-			public List<StereoEffect> effects;
-			public float volume;
-
-			public Channel(StereoBlock source){
-				this.source = source;
-				effects = new List<StereoEffect>();
-				volume = 1;
-			}
-
-			public void addEffect(StereoEffect se){
-				effects.Add (se);
-			}
-
-			public StereoAudioFrame get(){
-				StereoAudioFrame result = source.get ();
-				foreach(StereoEffect effect in effects){
-					effect.process (ref result);
-				}
-				return result;
-			}
-
-			public bool hasEnded(){
-				return source.hasEnded ();
+			foreach (MixerSink sink in sinks) {
+				sink.update (saf);
 			}
 		}
+
 	}
 }
 

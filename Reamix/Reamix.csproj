@@ -3,10 +3,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
-    <ProjectGuid>{3C07F5BF-B05E-4BDE-A6AF-76276D4FAE9E}</ProjectGuid>
+    <ProjectGuid>{4D7634A9-CC58-4743-9617-9126FADA7C73}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Realyx</RootNamespace>
-    <AssemblyName>Realyx</AssemblyName>
+    <RootNamespace>Reamix</RootNamespace>
+    <AssemblyName>Reamix</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -35,6 +35,8 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Switchboard.cs" />
+    <Compile Include="MultiFileSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

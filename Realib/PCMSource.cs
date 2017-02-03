@@ -12,6 +12,7 @@ namespace Realib
 		byte[] buffer;
 		int overlap;
 		int number = 0;
+		bool ended = false;
 
 		public double position;
 
@@ -27,7 +28,7 @@ namespace Realib
 		}
 
 		public bool hasEnded(){
-			return EndOfStream();
+			return EndOfStream() || ended;
 		}
 
 		public bool isActive(){
@@ -37,8 +38,13 @@ namespace Realib
 		BinaryReader br;
 		public StereoAudioFrame get(){
 			for (int i = 0; i < StereoAudioFrame.MAXLEN; i++) {
+				try{
 				saf.left_data [i] = br.ReadSingle ();
 				saf.right_data [i] = br.ReadSingle ();
+				}catch{
+					ended = true;
+					break;
+				}
 				if (EndOfStream ()) {
 					break;
 				}
@@ -62,9 +68,7 @@ namespace Realib
 
 			int index = 0;
 			float value = 0;
-			int leftindex = 0, rightindex = 0;
 			int float_index = 0;
-			bool leftNext = true;
 
 			while (((index + 8) <= bytesRead) && (float_index < StereoAudioFrame.MAXLEN)) { //Read a sample from both channels
 				value = BitConverter.ToSingle (buffer, index);
