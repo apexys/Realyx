@@ -37,6 +37,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Switchboard.cs" />
     <Compile Include="MultiFileSource.cs" />
+    <Compile Include="SquirrelMultiFileSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

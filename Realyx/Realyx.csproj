@@ -46,5 +46,9 @@
       <Project>{11627BAF-C182-4EB9-8908-EBF0C1DBA10F}</Project>
       <Name>Pulseaudio-Bindings</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Reamix\Reamix.csproj">
+      <Project>{4D7634A9-CC58-4743-9617-9126FADA7C73}</Project>
+      <Name>Reamix</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

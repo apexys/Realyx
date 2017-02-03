@@ -8,8 +8,15 @@ namespace Realyx
 		public static void Main (string[] args)
 		{
 			//var mixer = new Mixer ();
-			var source = new PulseaudioBindings.PulseaudioSource (PulseaudioBindings.PulseaudioHelpers.getSourceDeviceNames()[2]);
+			//var source = new PulseaudioBindings.PulseaudioSource (PulseaudioBindings.PulseaudioHelpers.getSourceDeviceNames()[2]);
 			//var source = new FFMpegSource ("/home/apexys/Music/03. Cat Thruster.mp3");
+			/*var source = new Reamix.MultiFileSource();
+			source.setFile("/home/apexys/Music/03. Cat Thruster.mp3");
+			source.Paused = false;
+			source.skipTo (10);*/
+			var source = new Reamix.SquirrelMultiFileSource ("http://localhost:1234");
+			source.setID (34);
+
 			//var source = new FFMpegSource ("/home/apexys/Music/Arty & Andrew Bayer - Follow The Light-272737205.mp3");
 			//var source2 = new FFMpegSource ("/home/apexys/Music/Jaime.mp3");
 			//var source = new FFMpegRIFFWaveSource("/home/apexys/Music/Jaime.mp3");
@@ -25,7 +32,7 @@ namespace Realyx
 			Channel input = new Channel(source);
 			input.Gain = 1f;
 
-			var sink = new PulseaudioBindings.PulseaudioSink(PulseaudioBindings.PulseaudioHelpers.getSinkDeviceNames ()[2]);
+			var sink = new PulseaudioBindings.PulseaudioSink();
 			sink.configure (input);
 
 			//var sink = new FFPlaySink ();
@@ -39,10 +46,11 @@ namespace Realyx
 			//clock.Stop ();
 			Console.WriteLine ("All done!");
 
-			var names = PulseaudioBindings.PulseaudioHelpers.getSourceDeviceNames ();
-			foreach(string name in names){
-				Console.WriteLine (name);
-			}
+			System.Threading.Thread.Sleep (10000);
+			source.setFile ("/home/apexys/Music/Arty & Andrew Bayer - Follow The Light-272737205.mp3");
+			source.setID (12);
+			Console.ReadLine ();
+			clock.Stop ();
 		}
 	}
 }
